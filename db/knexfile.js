@@ -6,9 +6,9 @@ module.exports = {
       "user": process.env.DATABASE_USER,
       "database": process.env.DATABASE_NAME,
       "password": process.env.DATABASE_PASSWORD,
-      "migrations":{
-        "directory": "./migrations"
-      }
+      },
+    "migrations":{
+      "directory": "./db/migrations",
     },
   },
 };
