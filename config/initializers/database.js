@@ -1,6 +1,6 @@
-var Config = require('../environment');
-var db_config = require('../../knexfile.js');
+import Config from '../environment';
+import db_config from '../../knexfile.js';
 var env = Config.get('NODE:ENV');
 var knex = require('knex')(db_config[env]);
-module.exports = knex;
+export default knex;
 knex.migrate.latest(db_config[env]);  
