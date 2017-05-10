@@ -1,0 +1,22 @@
+language: node_js
+notifications:
+  email: false
+node_js:
+  - '7'
+services:
+  - postgresql
+cache: yarn
+before_script:
+  - psql -c "create database meetinmotion_test_db" -U postgres
+script:
+  - yarn run test
+
+env:
+  - CCX=g++-4.8
+  - NODE_ENV=test
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - g++-4.8
