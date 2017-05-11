@@ -6,8 +6,4 @@ import async from 'async';
 var env = Config.get('NODE:ENV');
 var knex = require('knex')(db_config[env]);
 
-
-knex.migrate.latest().then(function(){
-  knex.seed.run();
-});
 export default knex;
