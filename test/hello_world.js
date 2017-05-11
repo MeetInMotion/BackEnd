@@ -2,7 +2,6 @@ import db from '../config/initializers/database.js';
 import chai from 'chai';
 
 describe('World!', function(){
-  console.log(process.env.NODE_ENV);
   it('should be greeted', function(){
     var greeting = "hello world";
     chai.assert(greeting == "hello world");
