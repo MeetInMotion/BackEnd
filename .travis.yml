@@ -15,7 +15,6 @@ script:
 
 env:
   - CCX=g++-4.8
-  - NODE_ENV=test
 addons:
   apt:
     sources:
