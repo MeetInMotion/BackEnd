@@ -1,0 +1,23 @@
+language: node_js
+notifications:
+  email: false
+node_js:
+  - '7'
+services:
+  - postgresql
+cache: yarn
+before_script:
+  - psql -c "create database meetinmotion_test_db" -U postgres
+script:
+  - knex migrate:latest --env test
+  - knex seed:run --env test
+  - yarn run test
+
+env:
+  - CCX=g++-4.8
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - g++-4.8
