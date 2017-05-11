@@ -1,17 +1,19 @@
 import db from '../config/initializers/database.js';
 import chai from 'chai';
 
-describe('World!', function(){
-  it('should be greeted', function(){
-    var greeting = "hello world";
-    chai.assert(greeting == "hello world");
-  });
-});
-
 describe('Database', function(){
+  before(function(done){
+    db.migrate.latest().then(function(){
+      done();
+    });
+  });
+  beforeEach(function(done){
+    db.seed.run().then(function(){
+      done();
+    })
+  });
   it('should hava a user', function(done){
     db('users').select('email').where({id: 1}).then((result) => {
-      console.log();
      chai.assert(result[0].email == 'rowValue1');
       done();
     }).catch((err) => {
