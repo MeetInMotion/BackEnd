@@ -22,7 +22,7 @@ module.exports = {
       "host": "localhost",
       "user": "postgres",
       "database": "meetinmotion_test_db",
-      "password": "",
+      "password": Config.get('DATABASE:TEST:PASSWORD'),
     },
     "migrations":{
       "directory": "./db/migrations",

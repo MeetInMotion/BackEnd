@@ -7,4 +7,9 @@ module.exports = {
       "comma-dangle": [2, "always-multiline"],
     },
   },
+  "DATABASE": {
+    'TEST': {
+      "PASSWORD": "",
+    }
+  }
 }

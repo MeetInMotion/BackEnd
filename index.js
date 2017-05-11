@@ -20,7 +20,7 @@ async.series([
     if(err != undefined){
       winston.error('[APP] Failed to initialize '+ error);
     }else {
-      winston.info('[APP] Initialized ');
+      winston.info('[APP] Initialized!');
     }
   }
 )
