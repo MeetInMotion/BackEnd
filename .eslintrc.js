@@ -1,4 +1,4 @@
-var Config = require('./config');
+var Config = require('./config/environment');
 
 module.exports = {
   "parserOptions": {
@@ -8,7 +8,7 @@ module.exports = {
       "experimentalObjectRestSpread": true
     }
   },
-  "extends": ["eslint:recommended"]
+  "extends": ["eslint:recommended"],
   "plugins": [
     "mocha",
   ],
@@ -16,7 +16,6 @@ module.exports = {
   "rules": Config.get('eslint:rules'),
 
   "env": {
-    "browser": true,
     "node": true,
     "mocha": true
   }
