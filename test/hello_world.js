@@ -1,4 +1,4 @@
-import db from '../config/initializers/database.js';
+import db from '../config/initializers/knex';
 import chai from 'chai';
 
 describe('Database', function(){
