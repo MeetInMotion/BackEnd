@@ -1,3 +1,3 @@
-var knex = require('./knex');
-var bookshelf = require('bookshel')(knex);
+import knex from './knex';
+var bookshelf = require('bookshelf')(knex);
 export default bookshelf;
