@@ -9,7 +9,7 @@ var server;
 winston.info('[APP] Initializing...');
 async.series([
   function initDb(callback){
-    db = require('./config/initializers/database.js');
+    db = require('./config/initializers/knex');
     callback();
   },
   function initServer(callback){
