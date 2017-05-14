@@ -14,7 +14,7 @@
   "pre-push": [
     "lint",
     "test",
-  ]
+  ],
   "dependencies": {
     "async": "^2.4.0",
     "babel-cli": "^6.24.1",
