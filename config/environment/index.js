@@ -1,5 +1,5 @@
 var nconf = require('nconf');
-var dotenv = require('dotenv').load({path: './config/environment/.env'});
+require('dotenv').load({path: './config/environment/.env'});
 
 var Config = function() {
   nconf.argv().env("_");
