@@ -13,7 +13,7 @@
   },
   "pre-push": [
     "lint",
-    "test",
+    "test"
   ],
   "dependencies": {
     "async": "^2.4.0",
