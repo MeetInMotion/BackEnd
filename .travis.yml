@@ -8,7 +8,6 @@ before_script:
 - psql -c "create database meetinmotion_test_db" -U postgres
 script:
 - yarn run lint
-- yarn start
 - yarn run test
 env:
 - CCX=g++-4.8
