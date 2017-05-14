@@ -6,10 +6,10 @@
   "author": "Eric Egan <egan1551@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "watch": "nodemon --exec yarn start",
+    "watch": "nodemon --exec yarn run lint && yarn start",
     "start": "babel-node index.js",
     "test": "cross-env NODE_ENV=test mocha",
-    "lint": "eslint **/*.js"
+    "lint": "cross-env NODE_ENV=development eslint --fix \"**/*.js\""
   },
   "dependencies": {
     "async": "^2.4.0",
@@ -30,7 +30,7 @@
   },
   "devDependencies": {
     "chai": "^3.5.0",
-    "cross-env": "^4.0.0",
+    "cross-env": "^5.0.0",
     "eslint": "^3.19.0",
     "mocha": "^3.3.0",
     "sinon": "^2.2.0"

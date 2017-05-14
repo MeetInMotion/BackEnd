@@ -7,6 +7,6 @@ module.exports = function(router){
       }).catch((err) => {
         console.log('there was and error:');
         console.log(err);
-      })
+      });
     });
-}
+};

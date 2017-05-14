@@ -23,4 +23,4 @@ async.series([
       winston.info('[APP] Initialized!');
     }
   }
-)
+);

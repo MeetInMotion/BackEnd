@@ -1,7 +1,7 @@
 import bookshelf from '../../config/initializers/bookshelf';
 
 var User = bookshelf.Model.extend({
-  tableName: 'users'
+  tableName: 'users',
 });
 
 export default User;

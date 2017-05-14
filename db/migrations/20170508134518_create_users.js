@@ -4,7 +4,7 @@ exports.up = function(knex, Promise) {
     table.increments('id').primary();
     table.string('email').unique();
     table.string('name');
-  })
+  });
 };
 
 exports.down = function(knex, Promise) {
