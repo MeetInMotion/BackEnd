@@ -1,21 +1,24 @@
 language: node_js
-notifications:
-  email: false
 node_js:
-  - '7'
+- '7'
 services:
-  - postgresql
+- postgresql
 cache: yarn
 before_script:
-  - psql -c "create database meetinmotion_test_db" -U postgres
+- psql -c "create database meetinmotion_test_db" -U postgres
 script:
-  - yarn run lint
-  - yarn run test
+- yarn run lint
+- yarn run test
 env:
-  - CCX=g++-4.8
+- CCX=g++-4.8
 addons:
   apt:
     sources:
-      - ubuntu-toolchain-r-test
+    - ubuntu-toolchain-r-test
     packages:
-      - g++-4.8
+    - g++-4.8
+notifications:
+  email: false
+  slack:
+    rooms:
+      secure: xrdQgEXPk9iZ6xl2mMfwYRgB+trv4XVfVuatsimf0VC6+m5XecqjINlC3ndZvC3ool+ASwS5GaK6QtICF+ep7WZPG+g3jZQTNNFdExE9de7p0cM+Pe9MtSCjet2SyKVecjoT2fLExGq9YmFzETUX1zeFAph1pvseCtoewyab8/3fnbc5OgHnAJiQGOp12nV2cELXsn3vCHbHo9WkSq+Ic7jV715VXbaRAF4HNFrzPnVTximUwhxWL02lpfendCgLSUO4BKepp1KzOaSJ4KoYC2TSDkjWgvRBK//eRchAtoilxPy1PMSuP1YkM0P+BJ1h4RTAjLsCKtzjabNd5WCqicxm2Q9tlfnMmoF4CEdhdVkbGIfsByAAraJoWHVgb1c1RqZmudFaCKhnAhOwc9wEe+jbZeUOtC298omUV2gMNIX3LW5oPLRCy1roqECSliVLmrf/hi9rn+KWz5TJc6UjKJ41WJHNF60mtvJvNWGjlQ+Q7lgDj3t++Ktq38DwdqWj4gHijefztcPjNIJ+8YEz3ijqubiYN4ZGoVspIa+eXsR+Ycc21640KGlSJfxOVonRt0EVoj4ZkgjMdyxUcJ6WRFTAJJrCJ808+bfYkmOhKrNKiDyd+5/fLLRDK+clTcMz7vR9/6/sm4Aq7f/l9NkedGhddHMXAhwFZZWILh2cPXU=

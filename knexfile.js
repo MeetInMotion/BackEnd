@@ -31,5 +31,5 @@ module.exports = {
       "directory": "./db/seeds/test",
     },
   },
-}
+};
 

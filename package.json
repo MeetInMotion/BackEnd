@@ -6,11 +6,15 @@
   "author": "Eric Egan <egan1551@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "watch": "nodemon --exec yarn start",
-    "start": "babel-node index.js",
+    "watch": "nodemon --exec yarn run lint && yarn start",
+    "start": "cross-env NODE_ENV=development babel-node index.js",
     "test": "cross-env NODE_ENV=test mocha",
-    "lint": "eslint **/*.js"
+    "lint": "cross-env NODE_ENV=development eslint --fix \"**/*.js\""
   },
+  "pre-push": [
+    "lint",
+    "test"
+  ],
   "dependencies": {
     "async": "^2.4.0",
     "babel-cli": "^6.24.1",
@@ -21,16 +25,18 @@
     "dotenv": "^4.0.0",
     "eslint-plugin-mocha": "^4.9.0",
     "express": "^4.15.2",
+    "express-winston": "^2.4.0",
     "knex": "^0.12.0",
     "nconf": "^0.8.4",
     "nodemon": "^1.11.0",
     "pg": "^6.1.5",
+    "pre-push": "^0.1.1",
     "require-dir": "^0.3.1",
     "winston": "^2.3.1"
   },
   "devDependencies": {
     "chai": "^3.5.0",
-    "cross-env": "^4.0.0",
+    "cross-env": "^5.0.0",
     "eslint": "^3.19.0",
     "mocha": "^3.3.0",
     "sinon": "^2.2.0"

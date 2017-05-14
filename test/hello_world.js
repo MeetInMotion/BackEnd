@@ -16,9 +16,6 @@ describe('Database', function(){
     db('users').select('email').where({id: 1}).then((result) => {
       chai.assert(result[0].email == 'rowValue1');
       done();
-    }).catch((err) => {
-      console.log("there was an error");
-      done(err);
     });
   });
 });

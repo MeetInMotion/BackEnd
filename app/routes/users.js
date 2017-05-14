@@ -1,12 +1,12 @@
 import User from '../models/user';
+import winston from 'winston';
 module.exports = function(router){
   router.route('/')
-    .get((req, res, next) => {
+    .get((req, res, _next) => {
       User.fetchAll().then((collection) => {
         res.json(collection);
       }).catch((err) => {
-        console.log('there was and error:');
-        console.log(err);
-      })
+        winston.error(err);
+      });
     });
-}
+};
