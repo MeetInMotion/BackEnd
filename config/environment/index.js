@@ -4,6 +4,7 @@ require('dotenv').load({path: './config/environment/.env'});
 var Config = function() {
   nconf.argv().env("_");
   var env = nconf.get("NODE:ENV") || "development";
+  console.log(env);
   nconf.add(env, {type: "literal", store:require("./"+ env +".js")});
   nconf.file("default", "./default.json");
 };
