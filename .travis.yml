@@ -7,6 +7,7 @@ cache: yarn
 before_script:
 - psql -c "create database meetinmotion_test_db" -U postgres
 script:
+- knex migrate:latest
 - yarn run lint
 - yarn run test
 env:
