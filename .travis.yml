@@ -7,11 +7,15 @@ cache: yarn
 before_script:
 - psql -c "create database meetinmotion_test_db" -U postgres
 script:
+- knex migrate:latest --env test
 - yarn run lint
 - yarn run test
 env:
 - CCX=g++-4.8
+dist: trusty
+sudo: required
 addons:
+  postgresql: "9.6"
   apt:
     sources:
     - ubuntu-toolchain-r-test

@@ -1,15 +1,20 @@
 {
   "name": "BackEnd",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "initializers/server.js",
   "repository": "git@github.com:MeetInMotion/BackEnd.git",
   "author": "Eric Egan <egan1551@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "watch": "nodemon --exec yarn run lint && yarn start",
-    "start": "cross-env NODE_ENV=development babel-node index.js",
+    "watch": "nodemon --exec yarn start",
+    "start": "cross-env NODE_ENV=production yarn run lint && babel-node initializers/server.js",
+
+    "watch:dev": "nodemon --exec yarn start:dev",
+    "start:dev": "cross-env NODE_ENV=development yarn run lint:dev && babel-node initializers/server.js",
     "test": "cross-env NODE_ENV=test mocha",
-    "lint": "cross-env NODE_ENV=development eslint --fix \"**/*.js\""
+    "lint": "cross-env NODE_ENV=production eslint --fix \"**/*.js\"",
+    "lint:dev": "cross-env NODE_ENV=development eslint --fix \"**/*.js\"",
+    "fetchData": "cross-env NODE_ENV=development babel-node helpers/data_fetch.js"
   },
   "pre-push": [
     "lint",
@@ -23,15 +28,18 @@
     "body-parser": "^1.17.1",
     "bookshelf": "^0.10.3",
     "dotenv": "^4.0.0",
+    "es6-promise": "^4.1.0",
     "eslint-plugin-mocha": "^4.9.0",
     "express": "^4.15.2",
-    "express-winston": "^2.4.0",
+    "isomorphic-fetch": "^2.2.1",
     "knex": "^0.12.0",
+    "morgan": "^1.8.1",
     "nconf": "^0.8.4",
     "nodemon": "^1.11.0",
     "pg": "^6.1.5",
     "pre-push": "^0.1.1",
     "require-dir": "^0.3.1",
+    "vhost": "^3.0.2",
     "winston": "^2.3.1"
   },
   "devDependencies": {
@@ -39,6 +47,7 @@
     "cross-env": "^5.0.0",
     "eslint": "^3.19.0",
     "mocha": "^3.3.0",
+    "proj4": "^2.4.3",
     "sinon": "^2.2.0"
   }
 }

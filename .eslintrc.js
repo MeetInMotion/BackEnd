@@ -1,4 +1,5 @@
-var Config = require('./config/environment');
+require('babel-register');
+var config = require('./config').default;
 
 module.exports = {
   "parserOptions": {
@@ -13,7 +14,7 @@ module.exports = {
     "mocha",
   ],
 
-  "rules": Config.get('eslint:rules'),
+  "rules": config('eslint:rules'),
 
   "env": {
     "node": true,
