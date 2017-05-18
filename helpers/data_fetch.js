@@ -69,7 +69,7 @@ knex('categories_locations').del()
     winston.info("finished");
   })
   .catch(function(err){
-    console.log(err);
+    winston.error(err);
   })
   .finally(function(){
     return knex.destroy();

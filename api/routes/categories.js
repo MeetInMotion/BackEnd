@@ -1,4 +1,5 @@
 import Category from '../models/category';
+import winston from 'winston';
 module.exports = function(router){
   router.route('/')
     .get((req, res) => {
@@ -13,7 +14,7 @@ module.exports = function(router){
           res.json(category.related('locations'));
         })
         .catch(function(err){
-          console.log(err);
+          winston.error(err);
         });
     });
 };
