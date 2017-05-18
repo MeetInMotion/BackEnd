@@ -1,6 +1,6 @@
-var Config = require('./config/environment');
-
-module.exports = {
+require('babel-register');
+var config = require('./config').default;
+var db_config = {
   "development": {
     "client": "pg",
     "connection": {
@@ -22,7 +22,7 @@ module.exports = {
       "host": "localhost",
       "user": "postgres",
       "database": "meetinmotion_test_db",
-      "password": Config.get('DATABASE:TEST:PASSWORD'),
+      "password": config('database:test:password'),
     },
     "migrations":{
       "directory": "./db/migrations",
@@ -33,3 +33,4 @@ module.exports = {
   },
 };
 
+module.exports = db_config;

@@ -5,7 +5,7 @@ module.exports = function(app){
   Object.keys(routes).forEach((route) => {
     var router = express.Router();
     require('./'+route)(router);
-    app.use('/api/'+route, router);
+    app.use('/'+route, router);
   });
 };
     
