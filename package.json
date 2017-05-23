@@ -8,7 +8,6 @@
   "scripts": {
     "watch": "nodemon --exec yarn start",
     "start": "cross-env NODE_ENV=production yarn run lint && babel-node initializers/server.js",
-
     "watch:dev": "nodemon --exec yarn start:dev",
     "start:dev": "cross-env NODE_ENV=development yarn run lint:dev && babel-node initializers/server.js",
     "test": "cross-env NODE_ENV=test mocha",
@@ -27,6 +26,7 @@
     "babel-register": "^6.24.1",
     "body-parser": "^1.17.1",
     "bookshelf": "^0.10.3",
+    "cors": "^2.8.3",
     "dotenv": "^4.0.0",
     "es6-promise": "^4.1.0",
     "eslint-plugin-mocha": "^4.9.0",
