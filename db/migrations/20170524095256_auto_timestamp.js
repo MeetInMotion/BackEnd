@@ -7,7 +7,7 @@ exports.up = function(knex, Promise) {
       table.timestamps(true, true);
     }),
     knex.schema.table('categories', function(table){
-      table.dropTimestamps()
+      table.dropTimestamps();
     }),
     knex.schema.table('categories', function(table){
       table.timestamps(true, true);
@@ -26,7 +26,7 @@ exports.up = function(knex, Promise) {
     }),
     knex.schema.table('categories_locations', function(table){
       table.timestamps(true, true);
-    })
+    }),
   ]);
 };
 
@@ -58,6 +58,6 @@ exports.down = function(knex, Promise) {
     }),
     knex.schema.table('categories_locations', function(table){
       table.dropTimestamps();
-    })
+    }),
   ]);
 };
