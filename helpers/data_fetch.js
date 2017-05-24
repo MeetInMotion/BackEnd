@@ -7,8 +7,12 @@ var categoryData = require('./sthlm/categories');
 var locations = [];
 var locationCategories = [];
 var categories = [];
-winston.info('clearing categories_locations');
-knex('categories_locations').del()
+winston.info('migrating latest');
+knex.migrate.latest()
+  .then(function(){
+    winston.info('clearing categories_locations');
+    return knex('categories_locations').del();
+  })
   .then(function(){
     winston.info('clearing locations');
     return knex('locations').del();
