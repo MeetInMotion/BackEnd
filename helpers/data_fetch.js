@@ -34,7 +34,7 @@ knex.migrate.latest()
       data['Attributes'].forEach(function(attribute){
         switch (attribute["Id"]){
         case "Image":{
-          location.img_url = attribute["Value"]["Id"];
+          location.img_url = "http://api.stockholm.se/ServiceGuideService/ImageFiles/" + attribute["Value"]["Id"] + "/data?apikey=23c9c3e39cd64cbeb66170063773ee81";
           break;
         }
         case "ShortDescription": {
