@@ -1,9 +1,8 @@
-var nconf = require('nconf');
-require('dotenv').load({path: './config/.env'});
-nconf.argv().env({lowerCase: true, separator: '_'});
-var env = nconf.get("node:env") || "development";
-nconf.add(env, {type: "literal", store: getEnvConfig(env)});
-nconf.file("default", "./default.json");
+var path = require('path');
+require('dotenv').load({"path": path.resolve('./config/.env')});
+var env = process.env.NODE_ENV || "development";
+const config = {...getEnvConfig(env), ...process.env};
+
 
 function getEnvConfig(env){
   var modules = require('require-dir')(); 
@@ -13,9 +12,5 @@ function getEnvConfig(env){
   });
   return config;
 }
-
-var config = function(key) {
-  return nconf.get(key);
-};
 
 export default config;

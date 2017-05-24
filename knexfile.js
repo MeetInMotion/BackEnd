@@ -22,7 +22,7 @@ var db_config = {
       "host": "localhost",
       "user": "postgres",
       "database": "meetinmotion_test_db",
-      "password": config('database:test:password'),
+      "password": config.DATABASE_TEST_PASSWORD,
     },
     "migrations":{
       "directory": "./db/migrations",
