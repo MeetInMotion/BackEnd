@@ -7,11 +7,11 @@
   "license": "MIT",
   "scripts": {
     "watch": "nodemon --exec npm start",
-    "start": "cross-env-shell NODE_ENV=production \"npm run lint && babel-node initializers/server.js\"",
+    "start": "cross-env-shell NODE_ENV=development \"npm run lint && babel-node initializers/server.js\"",
     "watch:dev": "nodemon --exec npm run start:dev",
     "start:dev": "cross-env-shell NODE_ENV=development \"npm run lint:dev && babel-node initializers/server.js\"",
     "test": "cross-env NODE_ENV=test mocha",
-    "lint": "cross-env NODE_ENV=production eslint --fix \"**/*.js\"",
+    "lint": "cross-env NODE_ENV=development eslint --fix \"**/*.js\"",
     "lint:dev": "cross-env NODE_ENV=development eslint --fix \"**/*.js\"",
     "fetchData": "cross-env NODE_ENV=development babel-node helpers/data_fetch.js"
   },

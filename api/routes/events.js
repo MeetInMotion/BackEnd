@@ -11,9 +11,10 @@ module.exports = function(router){
     })
     .post((req, res) =>{
       var event = {};
-      event.title = "title1";
+      event.title = "title2";
       event.date = "2017-06-03";
       event.time = "18:00+02";
+      event.description = "some description";
       event.location_id = req.body.location_id;
       new Event(event).save().then(function(model){
         res.json(model);
