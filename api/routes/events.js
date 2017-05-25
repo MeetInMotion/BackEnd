@@ -2,6 +2,12 @@ import Event from '../models/event';
 
 module.exports = function(router){
   router.route('/')
+    .get((_req, res) => {
+      Event.fetchAll({withRelated: ['location']})
+        .then(collection => {
+          res.json(collection);
+        });
+    })
     .post((req, res) =>{
       var event = {};
       event.title = "title1";
@@ -15,5 +21,12 @@ module.exports = function(router){
         console.log("here is an error");
         console.log(err);
       });
+    });
+  router.route('/:id')
+    .get((req, res) =>{
+      Event.where({id: req.params.id}).fetch({withRelated: ['location']})
+        .then(event => {
+          res.json(event);
+        });
     });
 };
