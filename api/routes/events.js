@@ -1,4 +1,5 @@
 import Event from '../models/event';
+import winston from 'winston';
 
 module.exports = function(router){
   router.route('/')
@@ -15,11 +16,9 @@ module.exports = function(router){
       event.time = "18:00+02";
       event.location_id = req.body.location_id;
       new Event(event).save().then(function(model){
-        console.log(model);
         res.json(model);
       }).catch(function(err){
-        console.log("here is an error");
-        console.log(err);
+        winston.error(err);
       });
     });
   router.route('/:id')
