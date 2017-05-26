@@ -4,7 +4,7 @@ import winston from 'winston';
 module.exports = function(router){
   router.route('/')
     .get((req, res) => {
-      location.fetchall().then(collection => {
+      location.fetchAll().then(collection => {
         res.json(collection);
       });
     });

@@ -68,4 +68,38 @@ module.exports = function(router){
           });
         });
     });
+
+  router.route('/:id/locations')
+    .get((req, res) => {
+      User.where({id: req.params.id}).fetch({withRelated: ['locations']})
+        .then(user => {
+          res.json(user.related('locations').toJSON());
+        });
+    })
+    .post((req, res) => {
+      User.where({id: req.params.id}).fetch()
+        .then(user => {
+          return user.locations().attach([req.body.location]);
+        })
+        .then(() => {
+          res.json({
+            status: "success",
+            message: "Added location to user successfully!",
+          });
+        });
+    });
+
+  router.route('/:id/locations/:location_id')
+    .delete((req, res) => {
+      User.where({id: req.params.id}).fetch()
+        .then(user => {
+          return user.locations().detach([req.params.location_id]);
+        })
+        .then(() => {
+          res.json({
+            status: "success",
+            message: "Successfully deleted location from user!",
+          });
+        });
+    });
 };
