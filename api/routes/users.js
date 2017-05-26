@@ -57,4 +57,15 @@ module.exports = function(router){
           winston.error(err);
         });
     });
+  router.route('/:id/events/:event_id')
+    .delete((req, res) => {
+      User.where({id: req.params.id}).fetch()
+        .then(user => {
+          user.events().detach([req.params.event_id]);
+          res.json({
+            status: "success",
+            message: "successfully removed user from event!",
+          });
+        });
+    });
 };
