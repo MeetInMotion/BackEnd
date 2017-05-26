@@ -38,4 +38,44 @@ module.exports = function(router){
           res.json(event);
         });
     });
+  router.route('/:id/users')
+    .post((req, res) => {
+      Event.where({id: req.params.id}).fetch()
+        .then(event => {
+          return event.users().attach([req.body.user]);
+        })
+        .then(() => {
+          res.json({
+            status: "success",
+            message: "Successfully added user to event!",
+          });
+        })
+        .catch(err => {
+          winston.error(err);
+          res.json({
+            status: "unsuccessful",
+            message: "Could not add user to event!",
+          });
+        });
+    });
+  router.route('/:id/users/:user_id')
+    .delete((req, res) => {
+      Event.where({id: req.params.id}).fetch()
+        .then(event => {
+          return event.users().detach([req.params.user_id]);
+        })
+        .then(() => {
+          res.json({
+            status: 'success',
+            message: 'Successfully deleted user from event',
+          });
+        }) 
+        .catch(err => {
+          winston.error(err);
+          res.json({
+            status: 'unsuccessful',
+            message: 'Could not remove user from event!',
+          });
+        });
+    });
 };
