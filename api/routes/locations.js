@@ -1,16 +1,16 @@
-import Location from '../models/location.js';
+import location from '../models/location.js';
 import winston from 'winston';
 
 module.exports = function(router){
   router.route('/')
     .get((req, res) => {
-      Location.fetchAll().then(collection => {
+      location.fetchall().then(collection => {
         res.json(collection);
       });
     });
   router.route('/:id')
     .get((req, res) => {
-      Location.where({id: req.params.id}).fetch({withRelated: ['events', 'categories']})
+      location.where({id: req.params.id}).fetch({withrelated: ['events', 'categories']})
         .then(location => {
           res.json(location);
         })
