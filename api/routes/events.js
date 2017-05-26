@@ -4,7 +4,7 @@ import winston from 'winston';
 module.exports = function(router){
   router.route('/')
     .get((_req, res) => {
-      Event.fetchAll({withRelated: ['location']})
+      Event.fetchAll({withRelated: ['location', 'users']})
         .then(collection => {
           res.json(collection);
         });
@@ -13,7 +13,7 @@ module.exports = function(router){
       var event = {};
       event.title = req.body.title;
       event.datetime = req.body.datetime;
-      event.user_id = req.body.owner;
+      event.user_id = req.body.user_id;
       event.description = req.body.description;
       event.location_id = req.body.location_id;
       new Event(event).save()
@@ -33,7 +33,7 @@ module.exports = function(router){
     });
   router.route('/:id')
     .get((req, res) =>{
-      Event.where({id: req.params.id}).fetch({withRelated: ['location']})
+      Event.where({id: req.params.id}).fetch({withRelated: ['location', 'users']})
         .then(event => {
           res.json(event);
         });
