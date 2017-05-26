@@ -10,12 +10,12 @@ module.exports = function(router){
     });
   router.route('/:id')
     .get((req, res) => {
-      Location.where({id: req.params.id}).fetch()
+      Location.where({id: req.params.id}).fetch({withRelated: ['events', 'categories']})
         .then(location => {
           res.json(location);
         })
         .catch(err =>{
-          winston.err(err);
+          winston.error(err);
         });
     });
 };
