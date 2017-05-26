@@ -14,7 +14,7 @@ module.exports = {
     "mocha",
   ],
 
-  "rules": config('eslint:rules'),
+  "rules": config.eslint.rules,
 
   "env": {
     "node": true,

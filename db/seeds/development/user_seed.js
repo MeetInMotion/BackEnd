@@ -5,9 +5,13 @@ exports.seed = function(knex, _Promise) {
     .then(function () {
       // Inserts seed entries
       return knex('users').insert([
-        {id: 1, email: 'rowValue1'},
-        {id: 2, email: 'rowValue2'},
-        {id: 3, email: 'rowValue3'},
+        {email: 'eric@mim.com', name: 'Eric'},
+        {email: 'annika@mim.com', name: 'Annika'},
+        {email: 'teo@mim.com', name: 'Teo'},
+        {email: 'fig@mim.com', name: 'Cecilia'},
+        {email: 'sebastian@mim.com', name: 'Sebastian'},
+        {email: 'pontus@mim.com', name: 'Pontus'},
+        {email: 'thezla@mim.com', name: 'Sebastian'},
       ]);
     });
 };

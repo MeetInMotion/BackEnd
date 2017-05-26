@@ -1,4 +1,4 @@
 import config from '../config';
 import app from '../app';
 
-app.listen(config('server:port'));
+app.listen(config.server.port);
