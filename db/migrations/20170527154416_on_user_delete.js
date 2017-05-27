@@ -2,10 +2,10 @@
 exports.up = function(knex, promise) {
   return promise.all([
     knex.schema.table('events', function(table){
-      table.dropforeign('user_id');
+      table.dropForeign('user_id');
     }),
     knex.schema.table('events', function(table){
-      table.foreign('user_id').references('id').intable('users').ondelete('set null');
+      table.foreign('user_id').references('id').inTable('users').onDelete('set null');
     }),
   ]);
 };
@@ -13,10 +13,10 @@ exports.up = function(knex, promise) {
 exports.down = function(knex, promise) {
   return promise.all([
     knex.schema.table('events', function(table){
-      table.dropforeign('user_id');
+      table.dropForeign('user_id');
     }),
     knex.schema.table('events', function(table){
-      table.foreign('user_id').references('id').intable('users').ondelete('no action');
+      table.foreign('user_id').references('id').inTable('users').onDelete('no action');
     }),
   ]);
 };
