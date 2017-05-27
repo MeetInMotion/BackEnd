@@ -24,7 +24,7 @@ export default function authorize(id, roles){
             winston.error('[Authorization] '+ message);
             winston.error('[Authorization] user_id: ' + user_id);
             winston.error('[Authorization] Token id: ' + decoded.id);
-            res.status.(403).json({
+            res.status(403).json({
               status: 'unsuccessful',
               message: message,
             });

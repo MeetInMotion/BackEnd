@@ -58,10 +58,10 @@ module.exports = function(router){
               status: 'unsuccessful',
               message: 'There where validation errors!',
               errors: result.array(),
-            })
+            });
             throw new Error('There where validation errors');
           }else{
-            return User.where({id: req.params.id}).fetch()
+            return User.where({id: req.params.id}).fetch();
           }
         })
         .then(user => {
