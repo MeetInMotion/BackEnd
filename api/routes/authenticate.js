@@ -33,13 +33,12 @@ module.exports = function(router){
           res.json({
             status: 'success',
             token: token,
+            user: user,
           });
         }
         else{
           winston.error('[Authentication] Could not authenticate user!');
-          winston.error('[Authentication] resonse:');
           winston.error(response);
-          winston.error('[Authentication] User: ' + typeof user);
           res.json({
             status: 'unsuccessful',
             message: 'was not able to authenticate with access_token!',

@@ -51,7 +51,7 @@ module.exports = function(router){
         .then(() => {
           res.json({
             status: 'success',
-            message: 'Added created event successfully!',
+            message: 'Created event successfully!',
           });
         })
         .catch(function(err){
