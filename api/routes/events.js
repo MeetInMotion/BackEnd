@@ -26,14 +26,14 @@ module.exports = function(router){
 
         return req.getValidationResult();
       })
-        .then(result =>{
+        .then(result => {
           if(!result.isEmpty()){
             res.status(400).json({
               status: 'unsucessful',
               message: 'There was validation errors!',
               errors: result.array(),
             });
-            throw new Error('Validation errors!');
+            throw new Error('Validation Errors!');
           }else{
             var event = {};
             event.title = req.body.title;
@@ -45,8 +45,8 @@ module.exports = function(router){
           }
         })
         .then(function(event){
-          console.log('I should not sound!');
-          return event.users().attach([event.user_id]);
+          console.log(event);
+          return event.users().attach([event.get('user_id')]);
         })
         .then(() => {
           res.json({
@@ -55,7 +55,7 @@ module.exports = function(router){
           });
         })
         .catch(function(err){
-          winston.error(err);
+          winston.error(err.message);
         });
     });
   
