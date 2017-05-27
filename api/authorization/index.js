@@ -24,7 +24,7 @@ export default function authorize(id, roles){
             winston.error('[Authorization] '+ message);
             winston.error('[Authorization] user_id: ' + user_id);
             winston.error('[Authorization] Token id: ' + decoded.id);
-            res.json({
+            res.status.(403).json({
               status: 'unsuccessful',
               message: message,
             });
@@ -32,7 +32,7 @@ export default function authorize(id, roles){
         }else{
           message = 'Failed to verify token';
           winston.info('[Authorization] ' + message);
-          res.json({
+          res.status(401).json({
             status: 'unsuccessful',
             message: message,
           });
@@ -41,7 +41,7 @@ export default function authorize(id, roles){
     }else{
       message = 'No token provided!';
       winston.info('[Authorization] ' + message);
-      res.json({
+      res.status(401).json({
         status: 'unsuccessful',
         message: message,
       });

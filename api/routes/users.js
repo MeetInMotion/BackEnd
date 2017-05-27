@@ -1,4 +1,5 @@
 import User from '../models/user';
+import Event from '../models/event';
 import winston from 'winston';
 import authorize from '../authorization';
 module.exports = function(router){
@@ -45,18 +46,36 @@ module.exports = function(router){
     })
     .post(authorize())
     .post((req, res) => {
-      User.where({id: req.params.id}).fetch()
+      Event.fetchAll()
+        .then(events => {
+          var event_ids = events.pluck('id');
+          req.checkBody('event', 'event id not valid').isIn(event_ids);
+          return req.getValidationResult();
+        })
+        .then(result => {
+          if(!result.isEmpty){
+            res.status(400).json({
+              status: 'unsuccessful',
+              message: 'There where validation errors!',
+              errors: result.array(),
+            })
+            throw new Error('There where validation errors');
+          }else{
+            return User.where({id: req.params.id}).fetch()
+          }
+        })
         .then(user => {
           return user.events().attach([req.body.event]);
         })
-        .then(() => {
+        .then((events) => {
           res.json({
             status: "success",
             message: "Added user to event successfully!",
+            events: events,
           });
         })
         .catch(err => {
-          winston.error(err);
+          winston.error(err.message);
         });
     });
   router.route('/:id/events/:event_id')
