@@ -10,7 +10,7 @@ exports.seed = function(knex, _Promise) {
         {email: 'texxez@hotmail.com', name: 'Teo'},
         {email: 'figster@gmail.com', name: 'Cecilia'},
         {email: 'Handboll17@live.se', name: 'Sebastian'},
-        {email: 'pontus@mim.com', name: 'Pontus'},
+        {email: 'Pontussandliden@hotmail.com', name: 'Pontus'},
         {email: 'alzeht@gmail.com', name: 'Sebastian'},
       ]);
     });

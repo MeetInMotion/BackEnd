@@ -3,6 +3,7 @@ import jwt from 'jsonwebtoken';
 import config from '../../config';
 import User from '../models/user';
 import Promise from 'bluebird';
+import winston from 'winston';
 module.exports = function(router){
   router.route('/')
     .get((req, res) => {
@@ -15,15 +16,14 @@ module.exports = function(router){
         },
         json: true,
       };
-      console.log(options);
       var getEmail = request(options);
       var verifyEmail = getEmail.then(response => {
-        return User.where({email: response.email}).count();
+        return User.where({email: response.email}).fetch();
       });
-      Promise.join(getEmail, verifyEmail, (response, verified) => {
-        if(verified){
+      Promise.join(getEmail, verifyEmail, (response, user) => {
+        if(user){
           var payload = {
-            email: response.email,
+            id: user.id, 
           };
             
           var jwtOptions = {
@@ -36,6 +36,10 @@ module.exports = function(router){
           });
         }
         else{
+          winston.error('[Authentication] Could not authenticate user!');
+          winston.error('[Authentication] resonse:');
+          winston.error(response);
+          winston.error('[Authentication] User: ' + typeof user);
           res.json({
             status: 'unsuccessful',
             message: 'was not able to authenticate with access_token!',
