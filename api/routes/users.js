@@ -1,5 +1,6 @@
 import User from '../models/user';
 import winston from 'winston';
+import authorize from '../authorization';
 module.exports = function(router){
   router.route('/')
     .get((req, res) => {
@@ -42,6 +43,7 @@ module.exports = function(router){
           res.json(user.related('events').toJSON());
         });
     })
+    .post(authorize())
     .post((req, res) => {
       User.where({id: req.params.id}).fetch()
         .then(user => {
