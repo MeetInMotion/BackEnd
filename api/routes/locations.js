@@ -12,17 +12,20 @@ module.exports = function(router){
     .get((req, res) => {
       Location.where({id: req.params.id}).fetch({withRelated: ['events', 'categories']})
         .then(location => {
-          winston.info(location.related('events').toJSON());
           res.json(location);
         })
         .catch(err =>{
           winston.error(err);
         });
     });
-  /*
   router.route('/:id/events')
     .get((req, res) =>{
-      
+      Location.where({id: req.params.id}).fetch({withRelated: ['events']})
+        .then(location => {
+          return location.related('events').fetch({withRelated: ['users']});
+        })
+        .then(events => {
+          res.json(events);
+        });
     });
-  */
 };
