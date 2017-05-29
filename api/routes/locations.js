@@ -1,21 +1,28 @@
-import location from '../models/location.js';
+import Location from '../models/location.js';
 import winston from 'winston';
 
 module.exports = function(router){
   router.route('/')
     .get((req, res) => {
-      location.fetchAll().then(collection => {
+      Location.fetchAll().then(collection => {
         res.json(collection);
       });
     });
   router.route('/:id')
     .get((req, res) => {
-      location.where({id: req.params.id}).fetch({withrelated: ['events', 'categories']})
+      Location.where({id: req.params.id}).fetch({withRelated: ['events', 'categories']})
         .then(location => {
+          winston.info(location.related('events').toJSON());
           res.json(location);
         })
         .catch(err =>{
           winston.error(err);
         });
     });
+  /*
+  router.route('/:id/events')
+    .get((req, res) =>{
+      
+    });
+  */
 };
