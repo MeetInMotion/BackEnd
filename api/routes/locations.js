@@ -24,6 +24,6 @@ module.exports = function(router){
       Location.where({id: req.params.id}).fetch({withRelated: ['events']})
         .then(location => {
           res.json(location.related('events').toJSON());
-        })
+        });
     });
 };
