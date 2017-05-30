@@ -19,10 +19,11 @@ module.exports = function(router){
           winston.error(err);
         });
     });
-  /*
   router.route('/:id/events')
     .get((req, res) =>{
-      
+      Location.where({id: req.params.id}).fetch({withRelated: ['events']})
+        .then(location => {
+          res.json(location.related('events').toJSON());
+        })
     });
-  */
 };
