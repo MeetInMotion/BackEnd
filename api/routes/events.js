@@ -75,13 +75,12 @@ module.exports = function(router){
     });
   router.route('/:id/users/:user_id')
     .get((req, res) =>{
-      Event.where({id: req.params.id}).fetch({withRelated: ['users']})
+      Event.where({id: req.params.id}).fetch({withRelated: ["users"]})
         .then(event => {
-          return event.related('users').query({where: {id: req.params.user_id}}).count();
-        })
-        .then(count => {
+          var ids = event.related('users').pluck("id");
+          console.log(typeof req.params.user_id);
           res.json({
-            attending: (count == "1") ? true : false,
+            attending: ids.includes(parseInt(req.params.user_id)) ? true : false,
           });
         });
     })
