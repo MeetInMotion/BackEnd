@@ -98,6 +98,7 @@ module.exports = function(router){
     .post((req, res) => {
       User.where({id: req.params.id}).fetch()
         .then(user => {
+          console.log(req.body);
           return user.locations().attach([req.body.location]);
         })
         .then(() => {

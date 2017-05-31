@@ -65,6 +65,14 @@ module.exports = function(router){
         .then(event => {
           res.json(event);
         });
+    })
+    .delete((req, res) => {
+      Event.where({id: req.params.id}).destroy()
+        .then(() =>{
+          res.json({
+            message: "Successfully deleted event!",
+          });
+        });
     });
   router.route('/:id/users')
     .get((req, res) => {
