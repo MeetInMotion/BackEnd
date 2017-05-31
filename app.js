@@ -5,6 +5,7 @@ import cors from 'cors';
 import api from './api';
 import bodyParser from 'body-parser';
 import expressValidator from 'express-validator';
+import config from './config';
 
 
 var app = express();
@@ -12,8 +13,8 @@ app.use(bodyParser.json());
 app.use(expressValidator());
 app.use(cors());
 app.use(morgan('dev'));
-app.use(vhost('api.localhost', api));
-app.use(vhost('localhost', express.static('./public')));
+app.use(vhost(config.server.apiHost, api));
+app.use(vhost(config.server.host, express.static('./public')));
 
 
 export default app;
