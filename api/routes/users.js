@@ -44,7 +44,6 @@ module.exports = function(router){
           res.json(user.related('events').toJSON());
         });
     })
-    .post(authorize())
     .post((req, res) => {
       Event.fetchAll()
         .then(events => {
