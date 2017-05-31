@@ -1,7 +1,6 @@
 import User from '../models/user';
 import Event from '../models/event';
 import winston from 'winston';
-import authorize from '../authorization';
 module.exports = function(router){
   router.route('/')
     .get((req, res) => {
