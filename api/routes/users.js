@@ -1,7 +1,6 @@
 import User from '../models/user';
 import Event from '../models/event';
 import winston from 'winston';
-import authorize from '../authorization';
 module.exports = function(router){
   router.route('/')
     .get((req, res) => {
@@ -44,7 +43,6 @@ module.exports = function(router){
           res.json(user.related('events').toJSON());
         });
     })
-    .post(authorize())
     .post((req, res) => {
       Event.fetchAll()
         .then(events => {
